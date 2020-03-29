@@ -28,24 +28,16 @@ int main(int argc, char *argv[])
             
             if (argv[i][0]!='/'&&argv[i][0]!='~'){
                 char *home = passwd->pw_dir;
-                //printf("%s\n%ld\n", home, sizeof(home)+1+ sizeof(argv[i]));
                 char *file= NULL;
-                //file=(char *)calloc(sizeof(home)*1* sizeof(argv[i]),sizeof(char));
                 file=(char *)malloc(strlen(home)+1+ strlen(argv[i]));
-                //char *file;
-                //printf("\nsize of file %ld\n",sizeof(home)+1+ sizeof(argv[i]));
-               
-                //printf("\nsize of file %zu\n",strlen(file));
+              
                 if (file == NULL) {
                     printf("failed to allocate memory\n");
-                    // unless there is some other option available, 
-                    // exit the program
                 }
 
                 strcat(file, home);
                 strcat(file, "/");
                 strcat(file, argv[i]);
-                //printf("\nsize of file %zu\n",strlen(file));
 
                
                 statoutput=stat(file,&fileStat);
@@ -71,7 +63,6 @@ int main(int argc, char *argv[])
                 }
                 
             }
-            
             
             int fileUID=fileStat.st_uid;//uid of file owner
             int fileGID=fileStat.st_gid;//gid of file owner
