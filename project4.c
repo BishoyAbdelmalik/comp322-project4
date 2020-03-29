@@ -23,13 +23,35 @@ int main(int argc, char *argv[])
     printf("%s\n",currentUser);
     int currentUID=filepasswd->pw_uid;
     int currentGID=filepasswd->pw_gid;
+    printf("File Permissions: \t");
+    //check if current user is file owner
+    if(currentUID==fileUID){
+        printf( (fileStat.st_mode & S_IRUSR) ? "r" : "-");
+        printf( (fileStat.st_mode & S_IWUSR) ? "w" : "-");
+        printf( (fileStat.st_mode & S_IXUSR) ? "x" : "-");
+    }else if (currentGID==fileGID){//check if current user in the same group as 
+        printf( (fileStat.st_mode & S_IRGRP) ? "r" : "-");
+        printf( (fileStat.st_mode & S_IWGRP) ? "w" : "-");
+        printf( (fileStat.st_mode & S_IXGRP) ? "x" : "-");
+    }else{//other
+        printf( (fileStat.st_mode & S_IROTH) ? "r" : "-");
+        printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
+        printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
+    }    
+    printf( "\n");
 
     
 
-    printf("File Permissions: \t");
+    /*printf("File Permissions: \t");
     printf( (S_ISDIR(fileStat.st_mode)) ? "d" : "-");
     //printf("\n\n%d\n",fileStat.st_mode);
     //printf("\n\n%d\n",S_IRUSR);
+    printf("\nanding first part %d\n",((fileStat.st_mode & S_IRUSR)==0) );
+    printf("\nstat %o\n",fileStat.st_mode );
+    printf("\nconstant %d\n",S_IRUSR );
+    printf("\nconstant %d\n",S_IXUSR );
+
+
     printf( (fileStat.st_mode & S_IRUSR) ? "r" : "-");
     printf( (fileStat.st_mode & S_IWUSR) ? "w" : "-");
     printf( (fileStat.st_mode & S_IXUSR) ? "x" : "-");
@@ -41,6 +63,6 @@ int main(int argc, char *argv[])
     printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
     printf("\n\n");
  
-    printf("The file %s a symbolic link\n", (S_ISLNK(fileStat.st_mode)) ? "is" : "is not");
+    printf("The file %s a symbolic link\n", (S_ISLNK(fileStat.st_mode)) ? "is" : "is not");*/
     return 0;
 }
