@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
                 //char *file;
                 //printf("\nsize of file %ld\n",sizeof(home)+1+ sizeof(argv[i]));
                
-                printf("\nsize of file %zu\n",strlen(file));
+                //printf("\nsize of file %zu\n",strlen(file));
                 if (file == NULL) {
                     printf("failed to allocate memory\n");
                     // unless there is some other option available, 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
                 strcat(file, home);
                 strcat(file, "/");
                 strcat(file, argv[i]);
-                printf("\nsize of file %zu\n",strlen(file));
+                //printf("\nsize of file %zu\n",strlen(file));
 
                
                 statoutput=stat(file,&fileStat);
