@@ -30,18 +30,21 @@ int main(int argc, char *argv[])
                 char *home = passwd->pw_dir;
                 //printf("%s\n%ld\n", home, sizeof(home)+1+ sizeof(argv[i]));
                 char *file= NULL;
-                file=(char *)malloc(sizeof(home)+1+ sizeof(argv[i]));
+                file=(char *)calloc(sizeof(home)+1+ sizeof(argv[i]),sizeof(char));
                 //char *file;
+                //printf("\nsize of file %ld\n",sizeof(home)+1+ sizeof(argv[i]));
+               
+                //printf("\nsize of file %zu\n",sizeof(file));
                 if (file == NULL) {
                     printf("failed to allocate memory\n");
                     // unless there is some other option available, 
                     // exit the program
                 }
-                memset(file,'\0',sizeof(home)+1+ sizeof(argv[i]));
 
                 strcat(file, home);
                 strcat(file, "/\0");
                 strcat(file, argv[i]);
+                //printf("\nsize of file %zu\n",strlen(file));
 
                
                 statoutput=stat(file,&fileStat);
