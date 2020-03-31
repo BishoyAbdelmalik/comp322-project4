@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
             if (argv[i][0]!='/'&&argv[i][0]!='~'){
                 char *home = passwd->pw_dir;
                 char *file= NULL;
-                file=(char *)malloc(strlen(home)+1+ strlen(argv[i]));
+                file=(char *)calloc(strlen(home)+1+ strlen(argv[i]),sizeof(char));
               
                 if (file == NULL) {
                     printf("failed to allocate memory\n");
